@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+
+message TransactionPayload {
+
+    enum PayloadType {
+        TYPE_UNSET = 0;
+        CREATE_ACCOUNT = 2;
+    //     CREATE_ASSET = 3;
+    //     CREATE_HOLDING = 4;
+    //     CREATE_OFFER = 5;
+    //     ACCEPT_OFFER = 10;
+    //     CLOSE_OFFER = 11;
+    }
+
+    PayloadType payload_type = 1;
+
+    CreateAccount create_account = 2;
+    // CreateAsset create_asset = 3;
+    // CreateHolding create_holding = 4;
+    // CreateOffer create_offer = 5;
+    // AcceptOffer accept_offer = 10;
+    // CloseOffer close_offer = 11;
+}
+
+message CreateAccount {
+    // string user_type = 1;
+    // string user_id = 2;
+    // string adhaar_number = 3;
+    // string phone_number = 4;
+    // string pan_card_number = 5;
+    // repeated int64 key_index = 6 [packed=true];
+    string email =1;
+    string phone_number =2;
+
+
+}
+
+
+// message CreateAccount {
+
+//     string label = 1;
+//     string description =2;
+// }

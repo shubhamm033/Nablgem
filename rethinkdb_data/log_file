@@ -1,0 +1,15 @@
+2018-09-09T18:33:13.937854914 0.045220s notice: Recursively removing directory /home/shubhamm033/sawtooth/rethinkdb_data/tmp
+2018-09-09T18:33:13.968444755 0.075809s notice: Initializing directory /home/shubhamm033/sawtooth/rethinkdb_data
+2018-09-09T18:33:13.968556376 0.075921s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/shubhamm033/sawtooth/rethinkdb_data' did not already exist or is empty.)
+2018-09-09T18:33:13.968601122 0.075966s notice: Running rethinkdb 2.3.6~0xenial (GCC 5.3.1)...
+2018-09-09T18:33:13.995456333 0.102823s notice: Running on Linux 4.15.0-33-generic x86_64
+2018-09-09T18:33:13.995531780 0.102896s notice: Loading data from directory /home/shubhamm033/sawtooth/rethinkdb_data
+2018-09-09T18:33:14.250496367 0.357861s info: Automatically using cache size of 100 MB
+2018-09-09T18:33:14.265332136 0.372697s warn: Cache size does not leave much memory for server and query overhead (available memory: 1092 MB).
+2018-09-09T18:33:14.265342015 0.372706s warn: Cache size is very low and may impact performance.
+2018-09-09T18:33:14.266290454 0.373655s error: TCP socket creation failed for port 29015: Address already in use.
+2018-09-09T21:14:38.316291954 0.072650s notice: Running rethinkdb 2.3.6~0xenial (GCC 5.3.1)...
+2018-09-09T21:14:38.349729462 0.106090s notice: Running on Linux 4.15.0-33-generic x86_64
+2018-09-09T21:14:38.349796891 0.106155s notice: Loading data from directory /home/shubhamm033/sawtooth/rethinkdb_data
+2018-09-09T21:14:38.459907105 0.216265s info: Automatically using cache size of 257 MB
+2018-09-09T21:14:38.460827244 0.217185s error: TCP socket creation failed for port 29015: Address already in use.
