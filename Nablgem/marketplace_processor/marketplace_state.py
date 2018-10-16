@@ -2,6 +2,8 @@
 # from addressing import addresses
 import accounts_pb2
 import addresses
+import json
+from ast import literal_eval
 
 class MarketplaceState(object):
 
@@ -13,7 +15,7 @@ class MarketplaceState(object):
         
         
 
-    def set_account(self, public_key, email,phone_number):
+    def set_account(self, public_key, email,phone_number,user_type,pan_card_number,user_id,first_name,last_name,adhaar):
         address = addresses.make_account_address(account_id=public_key)
         # print(address)
         # container = _get_account_container(self._state_entries, address)
@@ -24,19 +26,53 @@ class MarketplaceState(object):
             details= {}
             details["email"] = email
             details["phone_number"] = phone_number
+            details["user_type"]=user_type
+            details["pan_card_number"]= pan_card_number
+            details["user_id"]= user_id
+            details["first_name"]= first_name
+            details["last_name"]= last_name
+            details["adhaar"]=adhaar
+            # print(details)
+            
         else:
             print("account exist")
 
         state_data = str(details).encode('utf-8')
         # print(state_data)
         final_state = self._context.set_state({address: state_data})
-        print(final_state)
+        # print(final_state)
         if len(final_state) < 1:
             raise InternalError("State Error")
 
 
+    def set_empty_asset(self,public_key,child_public_key,child_key_index,is_empty_asset):
+        
+        address = addresses.make_account_address(account_id=public_key)
+        current_entry = self._context.get_state([address])
+        
+    
+        
+        details=current_entry[0].data
+        details= details.decode("utf-8")
+        details =literal_eval(details)
+        
+        if "key_indexes" in details.keys():
+            details["key_indexes"].append(child_key_index)
+        else:
+            details["key_indexes"] = [child_key_index]
 
-            
+        if "is_empty_asset" in details.keys():
+            details["is_empty_state"] = True
+        
+        
+      
+
+        state_data = str(details).encode('utf-8')
+        print(state_data)
+        final_state = self._context.set_state({address: state_data})
+        # print(final_state)
+        if len(final_state) < 1:
+            raise InternalError("State Error")
 
 
 

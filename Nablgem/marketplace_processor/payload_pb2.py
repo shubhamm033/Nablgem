@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='payload.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\rpayload.proto\"\xa6\x01\n\x12TransactionPayload\x12\x35\n\x0cpayload_type\x18\x01 \x01(\x0e\x32\x1f.TransactionPayload.PayloadType\x12&\n\x0e\x63reate_account\x18\x02 \x01(\x0b\x32\x0e.CreateAccount\"1\n\x0bPayloadType\x12\x0e\n\nTYPE_UNSET\x10\x00\x12\x12\n\x0e\x43REATE_ACCOUNT\x10\x02\"4\n\rCreateAccount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x14\n\x0cphone_number\x18\x02 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n\rpayload.proto\"\xdc\x01\n\x12TransactionPayload\x12\x35\n\x0cpayload_type\x18\x01 \x01(\x0e\x32\x1f.TransactionPayload.PayloadType\x12&\n\x0e\x63reate_account\x18\x02 \x01(\x0b\x32\x0e.CreateAccount\x12\"\n\x0c\x63reate_asset\x18\x03 \x01(\x0b\x32\x0c.CreateAsset\"C\n\x0bPayloadType\x12\x0e\n\nTYPE_UNSET\x10\x00\x12\x12\n\x0e\x43REATE_ACCOUNT\x10\x02\x12\x10\n\x0c\x43REATE_ASSET\x10\x03\"\xc1\x01\n\rCreateAccount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x14\n\x0cphone_number\x18\x02 \x01(\t\x12\x11\n\tuser_type\x18\x03 \x01(\t\x12\x17\n\x0fpan_card_number\x18\x04 \x01(\t\x12\x0f\n\x07user_id\x18\x05 \x01(\t\x12\x12\n\nfirst_name\x18\x06 \x01(\t\x12\x11\n\tlast_name\x18\x07 \x01(\t\x12\x17\n\x0bkey_indexes\x18\x08 \x03(\rB\x02\x10\x01\x12\x0e\n\x06\x61\x64haar\x18\t \x01(\t\"\x98\x01\n\x0b\x43reateAsset\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\x02 \x01(\t\x12\x11\n\tfile_name\x18\x03 \x01(\t\x12\x11\n\tfile_hash\x18\x04 \x01(\t\x12\x18\n\x10\x63hild_public_key\x18\x05 \x01(\t\x12\x17\n\x0f\x63hild_key_index\x18\x06 \x01(\r\x12\x16\n\x0eis_empty_asset\x18\x07 \x01(\x08\x62\x06proto3')
 )
 
 
@@ -38,11 +38,15 @@ _TRANSACTIONPAYLOAD_PAYLOADTYPE = _descriptor.EnumDescriptor(
       name='CREATE_ACCOUNT', index=1, number=2,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CREATE_ASSET', index=2, number=3,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=135,
-  serialized_end=184,
+  serialized_start=171,
+  serialized_end=238,
 )
 _sym_db.RegisterEnumDescriptor(_TRANSACTIONPAYLOAD_PAYLOADTYPE)
 
@@ -68,6 +72,13 @@ _TRANSACTIONPAYLOAD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='create_asset', full_name='TransactionPayload.create_asset', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -82,7 +93,7 @@ _TRANSACTIONPAYLOAD = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=18,
-  serialized_end=184,
+  serialized_end=238,
 )
 
 
@@ -107,6 +118,55 @@ _CREATEACCOUNT = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='user_type', full_name='CreateAccount.user_type', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='pan_card_number', full_name='CreateAccount.pan_card_number', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='CreateAccount.user_id', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='first_name', full_name='CreateAccount.first_name', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='last_name', full_name='CreateAccount.last_name', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='key_indexes', full_name='CreateAccount.key_indexes', index=7,
+      number=8, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\020\001'))),
+    _descriptor.FieldDescriptor(
+      name='adhaar', full_name='CreateAccount.adhaar', index=8,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -119,15 +179,90 @@ _CREATEACCOUNT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=186,
-  serialized_end=238,
+  serialized_start=241,
+  serialized_end=434,
+)
+
+
+_CREATEASSET = _descriptor.Descriptor(
+  name='CreateAsset',
+  full_name='CreateAsset',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='CreateAsset.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='url', full_name='CreateAsset.url', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='file_name', full_name='CreateAsset.file_name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='file_hash', full_name='CreateAsset.file_hash', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='child_public_key', full_name='CreateAsset.child_public_key', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='child_key_index', full_name='CreateAsset.child_key_index', index=5,
+      number=6, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='is_empty_asset', full_name='CreateAsset.is_empty_asset', index=6,
+      number=7, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=437,
+  serialized_end=589,
 )
 
 _TRANSACTIONPAYLOAD.fields_by_name['payload_type'].enum_type = _TRANSACTIONPAYLOAD_PAYLOADTYPE
 _TRANSACTIONPAYLOAD.fields_by_name['create_account'].message_type = _CREATEACCOUNT
+_TRANSACTIONPAYLOAD.fields_by_name['create_asset'].message_type = _CREATEASSET
 _TRANSACTIONPAYLOAD_PAYLOADTYPE.containing_type = _TRANSACTIONPAYLOAD
 DESCRIPTOR.message_types_by_name['TransactionPayload'] = _TRANSACTIONPAYLOAD
 DESCRIPTOR.message_types_by_name['CreateAccount'] = _CREATEACCOUNT
+DESCRIPTOR.message_types_by_name['CreateAsset'] = _CREATEASSET
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 TransactionPayload = _reflection.GeneratedProtocolMessageType('TransactionPayload', (_message.Message,), dict(
@@ -144,5 +279,14 @@ CreateAccount = _reflection.GeneratedProtocolMessageType('CreateAccount', (_mess
   ))
 _sym_db.RegisterMessage(CreateAccount)
 
+CreateAsset = _reflection.GeneratedProtocolMessageType('CreateAsset', (_message.Message,), dict(
+  DESCRIPTOR = _CREATEASSET,
+  __module__ = 'payload_pb2'
+  # @@protoc_insertion_point(class_scope:CreateAsset)
+  ))
+_sym_db.RegisterMessage(CreateAsset)
 
+
+_CREATEACCOUNT.fields_by_name['key_indexes'].has_options = True
+_CREATEACCOUNT.fields_by_name['key_indexes']._options = _descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\020\001'))
 # @@protoc_insertion_point(module_scope)

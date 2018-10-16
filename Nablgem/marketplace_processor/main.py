@@ -5,6 +5,7 @@ import handler
 from marketplace_payload import MarketplacePayload
 from marketplace_state import MarketplaceState
 import accounts
+import assets
 
 from sawtooth_sdk.processor.handler import TransactionHandler
 from sawtooth_sdk.processor.exceptions import InvalidTransaction
@@ -50,18 +51,28 @@ class MarketplaceTransactionHandler(TransactionHandler):
            This function does most of the work for this class by processing
            a single transaction for the simplewallet transaction family.   
         '''                                                   
-        # print(transaction.header)
+        print(transaction.header)
         # print(transaction.payload)
         state = MarketplaceState(context=context)
+        # print(state)
         payload = MarketplacePayload(payload=transaction.payload)
-
+        # print(state)
         # print(payload.create_account())
 
-        # if payload.is_create_account():
-        accounts.handle_account_creation(
-            payload.create_account(),
+        if payload.is_create_account():
+            accounts.handle_account_creation(
+                payload.create_account(),
+                header=transaction.header,
+                state=state)
+
+        elif payload.is_create_asset():
+            assets.handle_empty_asset_creation(
+            payload.create_asset(),
             header=transaction.header,
             state=state)
+
+            
+
     # Get the payload and extract simplewallet-specific information.
     
         # header = transaction.header

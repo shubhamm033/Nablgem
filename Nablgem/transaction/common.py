@@ -32,7 +32,7 @@ def wrap_payload_in_txn_batch(txn_key, payload, header, batch_key):
         payload=payload,
         header=header,
         header_signature=txn_key.sign(header))
-
+    print(txn_key.sign(header))
     batch_header = batch_pb2.BatchHeader(
         signer_public_key=batch_key.get_public_key().as_hex(),
         transaction_ids=[transaction.header_signature]).SerializeToString()

@@ -6,6 +6,10 @@ from api.errors import ApiInternalError
 import time
 import aiohttp
 import asyncio
+import base64
+import json
+import yaml
+from ast import literal_eval
 # from logging.clogging import logger
 
 # async def send(conn, timeout, batches):
@@ -34,7 +38,7 @@ async def send(data, request):
                 async with session.post("http://127.0.0.1:8008/batches", data=data, headers=headers) as response:
                     # print(response)
                     data = await response.read()
-                    print(data)
+                    # print(data)
     except Exception as e:
         # logger.error("Blockchain rest-api is unreachable, Please fix it dude")
         raise ApiInternalError("Blockchain rest-api is unreachable, Please fix it dude")
@@ -53,15 +57,15 @@ async def wait_for_status(batch_id,wait, request):
     try:
         with aiohttp.Timeout(request.app.config.TIMEOUT):
             async with aiohttp.ClientSession() as session:
-                    async with session.get("http://127.0.0.1:8008/batch_statuses?id={}&wait={}".format(batch_id,wait), headers=headers) as response:
+                async with session.get("http://127.0.0.1:8008/batch_statuses?id={}&wait={}".format(batch_id,wait), headers=headers) as response:
                         # print(response)
                         await asyncio.sleep(4)
                         data = await response.read()
-                        print(data)
+                        # print(data)
                         data = load_json(data)
         # print(data)
                         status = data['data'][0]['status']
-        # print(status)
+        print(status) 
     except Exception as e:
         # logger.error("Error in wait for status")
         # logger.error(e)
@@ -92,9 +96,30 @@ async def wait_for_status(batch_id,wait, request):
     # return
 
 
+async def get_account_state(address,request):
 
+    # try:
 
+    headers = {'Content-Type': 'application/json'}
+    with aiohttp.Timeout(request.app.config.TIMEOUT):
+        async with aiohttp.ClientSession() as session:
+            async with session.get("http://127.0.0.1:8008/state/{}".format(address), headers=headers) as response:
+                        # print(response)
+                    await asyncio.sleep(4)
+                    data = await response.read()
+                    # print(type(data))
+                    data =data.decode("utf-8")
+                    # data =literal_eval(data)
+                    data = json.loads(data)
+                    # print(data["data"])
+                    # data2 = base64.b64decode(data["data"])
+    # print(data2)  
+                        
+                        
+    # except Exception as e:
+    #     pass
 
+        return base64.b64decode(data["data"])
 
 
 

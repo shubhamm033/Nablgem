@@ -1,12 +1,19 @@
 syntax = "proto3";
 
 message Account {
-     string email =1;
-     string phone_number=2; 
+    string email =1;
+    string phone_number=2;
+    string user_type = 3;
+    string pan_card_number = 4;
+    string user_id =5;
+    string first_name =6;
+    string last_name =7;
+    repeated uint32 key_indexes = 8 [packed=true];
+    string adhaar =9;
 }
 
-message AccountContainer {
-    repeated Account entries = 1;
-}
+// message AccountContainer {
+//     repeated Account entries = 1;
+// }
 
 

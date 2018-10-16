@@ -19,7 +19,7 @@ from sawtooth_rest_api.messaging import Connection
 from zmq.asyncio import ZMQEventLoop
 
 from api.accounts import ACCOUNTS_BP
-# from api.assets import ASSETS_BP
+from api.assets import ASSETS_BP
 from api.authorization import AUTH_BP
 from api.errors import ERRORS_BP
 # from api.holdings import HOLDINGS_BP
@@ -34,14 +34,17 @@ DEFAULT_CONFIG = {
     'VALIDATOR_URL': 'tcp://localhost:4004',
     'DB_HOST': 'localhost',
     'DB_PORT': 28015,
-    'DB_NAME': 'marketplace',
+    'DB_NAME': 'main_db',
     'DEBUG': True,
     'KEEP_ALIVE': False,
     'SECRET_KEY': None,
     'AES_KEY': None,
     'BATCHER_PRIVATE_KEY': None,
     "REST_API_URL":"http://127.0.0.1:8008",
-    "TIMEOUT": 60
+    "TIMEOUT": 60,
+    "ROOT_KEY_INDEX": 0,
+    "BUCKET_NAME": "personal-demo-bucket"
+    
 }
 
 
@@ -53,6 +56,7 @@ async def open_connections(app):
         host=app.config.DB_HOST,
         port=app.config.DB_PORT,
         db=app.config.DB_NAME)
+    # print(app.config.DB_NAME)
 
     # app.config.VAL_CONN = Connection(app.config.VALIDATOR_URL)
     # print(app.config.VAL_CONN)
@@ -92,7 +96,13 @@ def parse_args(args):
                         help='The AES key used for private key encryption')
     parser.add_argument('--batcher-private-key',
                         help='The sawtooth key used for transaction signing')
+    parser.add_argument('--aws-access-key',
+                        help='The aws access key used for file uploading')
+    parser.add_argument('--aws-secret-key',
+                        help='The aws secret key used for file uploading')                    
     return parser.parse_args(args)
+
+
 
 
 def load_config(app):  # pylint: disable=too-many-branches
@@ -138,7 +148,7 @@ def load_config(app):  # pylint: disable=too-many-branches
     if app.config.AES_KEY is None:
         LOGGER.exception("AES key was not provided")
         sys.exit(1)
-
+    
     if opts.batcher_private_key is not None:
         app.config.BATCHER_PRIVATE_KEY = opts.batcher_private_key
     if app.config.BATCHER_PRIVATE_KEY is None:
@@ -158,9 +168,10 @@ def load_config(app):  # pylint: disable=too-many-branches
 def main():
     app = Sanic(__name__)
     app.blueprint(ACCOUNTS_BP,url_prefix='/accounts')
-    # app.blueprint(ASSETS_BP)
-    app.blueprint(AUTH_BP)
-    app.blueprint(ERRORS_BP)
+    app.blueprint(ASSETS_BP,url_prefix='/assets')
+
+    # app.blueprint(AUTH_BP)
+    # app.blueprint(ERRORS_BP)
     # app.blueprint(HOLDINGS_BP)
     
     # app.blueprint(OFFERS_BP)

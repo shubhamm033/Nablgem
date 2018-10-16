@@ -1,5 +1,5 @@
 from Crypto.Cipher import AES
-
+import random
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from sawtooth_signing import CryptoFactory
@@ -11,11 +11,16 @@ from db import auth_query
 
 # from marketplace_transaction.protobuf import rule_pb2
 
+def gen_childkey_index():
+    return random.randint(0,(2**32-1))
+
+
 
 def validate_fields(required_fields, request_json):
     try:
         for field in required_fields:
-            if request_json.get(field) is None:
+        
+            if request_json[field] is None:
                 raise ApiBadRequest("{} is required".format(field))
     except (ValueError, AttributeError):
         raise ApiBadRequest("Improper JSON format")

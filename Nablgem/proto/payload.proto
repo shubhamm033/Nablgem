@@ -6,7 +6,7 @@ message TransactionPayload {
     enum PayloadType {
         TYPE_UNSET = 0;
         CREATE_ACCOUNT = 2;
-    //     CREATE_ASSET = 3;
+        CREATE_ASSET = 3;
     //     CREATE_HOLDING = 4;
     //     CREATE_OFFER = 5;
     //     ACCEPT_OFFER = 10;
@@ -16,7 +16,7 @@ message TransactionPayload {
     PayloadType payload_type = 1;
 
     CreateAccount create_account = 2;
-    // CreateAsset create_asset = 3;
+    CreateAsset create_asset = 3;
     // CreateHolding create_holding = 4;
     // CreateOffer create_offer = 5;
     // AcceptOffer accept_offer = 10;
@@ -32,9 +32,32 @@ message CreateAccount {
     // repeated int64 key_index = 6 [packed=true];
     string email =1;
     string phone_number =2;
-
-
+    string user_type = 3;
+    string pan_card_number = 4;
+    string user_id =5;
+    string first_name =6;
+    string last_name =7;
+    repeated uint32 key_indexes = 8 [packed=true];
+    string adhaar =9;
 }
+
+
+message CreateAsset {
+    
+    string key=1;
+    string url=2;
+    string file_name=3;
+    string file_hash=4;
+    string child_public_key=5;
+    uint32 child_key_index=6;
+    bool is_empty_asset= 7;
+}
+
+
+
+
+
+
 
 
 // message CreateAccount {

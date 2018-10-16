@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message CreateAsset {
+    
+    string key=1;
+    string url=2;
+    string file_name=3;
+    string file_hash=4;
+    string child_public_key=5;
+    uint32 child_key_index=6;
+    bool is_empty_asset= 7;
+}
+
+

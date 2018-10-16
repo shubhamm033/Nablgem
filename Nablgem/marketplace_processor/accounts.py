@@ -21,7 +21,13 @@ def handle_account_creation(create_account, header, state):
     state.set_account(
         public_key=header.signer_public_key,
         email=create_account.email,
-        phone_number=create_account.phone_number
+        phone_number=create_account.phone_number,
+        user_type =create_account.user_type,
+        pan_card_number =create_account.pan_card_number,
+        user_id= create_account.user_id,
+        first_name = create_account.first_name,
+        last_name = create_account.last_name,
+        adhaar=create_account.adhaar
         )
 
 
