@@ -18,7 +18,7 @@ ipaddress==1.0.22
 ipython==5.8.0
 ipython-genutils==0.2.0
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 logging==0.4.9.6
 MarkupSafe==1.0
 Naked==0.1.31
