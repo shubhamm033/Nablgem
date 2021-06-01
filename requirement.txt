@@ -43,6 +43,6 @@ six==1.11.0
 sssa-python==0.0.2
 text-unidecode==1.2
 traitlets==4.3.2
-urllib3==1.23
+urllib3==1.26.5
 wcwidth==0.1.7
 Werkzeug==0.14.1
